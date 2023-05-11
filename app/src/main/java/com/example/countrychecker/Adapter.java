@@ -22,7 +22,7 @@ public class Adapter {
         aa = aa.substring(aa.lastIndexOf('[') + 1, aa.indexOf(']'));
         //System.out.println(aa);
         return aa;
-        //System.out.println(aa);
+        //System.out.println(aa);s
         //System.out.println(a);
     }
     public static String Photo(String name) {
