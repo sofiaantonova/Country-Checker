@@ -30,6 +30,7 @@
 
     <Button
         android:id="@+id/Government"
+        android:onClick="parliamentStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -44,6 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Symbols"
+        android:onClick="symbolsStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
