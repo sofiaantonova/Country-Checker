@@ -1,63 +1,49 @@
 package com.example.countrychecker;
 
-import static com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.withCrossFade;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.util.Preconditions;
 
 import static com.example.countrychecker.R.id.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PictureDrawable;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.load.model.StreamEncoder;
-import com.pixplicity.sharp.Sharp;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.time.Instant;
-
-import io.github.fastily.jwiki.core.Wiki;
 
 
-public class LeaderActivity extends AppCompatActivity {
-    private RequestBuilder<PictureDrawable> requestBuilder;
+public class PersonActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView leader = findViewById(R.id.LeaderName);
+        TextView leader = findViewById(R.id.LeaderName);
         ImageView ph = findViewById(R.id.leadPhoto);
+        TextView bio = findViewById(leaderBio);
         new Thread(() -> {
-            String pres;
+            String pres, biog;
             try {
                 pres = Adapter.Pres("United States");
+                biog = Adapter.Bio(pres);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             leader.post(() -> leader.setText(pres));
+            bio.post(() -> {
+                bio.setText(biog);
+                bio.setMovementMethod(new ScrollingMovementMethod());
+            });
             URL url;
             try {
-                url = new URL(Adapter.Photo("United States"));
+                url = new URL(Adapter.Photo(pres, "image"));
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
@@ -67,13 +53,12 @@ public class LeaderActivity extends AppCompatActivity {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            Sharp.loadInputStream(in).into(ph);
+            ph.post(() -> Picasso.get().load(url.toString()).into(ph));
             try {
                 in.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }).start();
-        //Picasso.get().load(uri).into(ph);
     }
 }

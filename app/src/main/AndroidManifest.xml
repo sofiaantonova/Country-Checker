@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CountryChecker"
         tools:targetApi="31">
         <activity
-            android:name=".LeaderActivity"
+            android:name=".PersonActivity"
             android:exported="false" />
         <activity
             android:name=".InfoActivity"

@@ -4,38 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LeaderActivity">
+    tools:context=".PersonActivity">
 
     <ImageView
         android:id="@+id/leadPhoto"
         android:layout_width="382dp"
         android:layout_height="375dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/anon" />
 
     <TextView
         android:id="@+id/LeaderName"
-        android:layout_width="382dp"
-        android:layout_height="123dp"
-        android:layout_marginTop="82dp"
-        android:text="TextView"
+        android:layout_width="388dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Please wait"
+        android:textSize="21sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leadPhoto" />
 
     <TextView
         android:id="@+id/leaderBio"
-        android:layout_width="385dp"
-        android:layout_height="151dp"
-        android:layout_marginBottom="92dp"
-        android:text="TextView"
+        android:layout_width="388dp"
+        android:layout_height="194dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="25dp"
+        android:scrollbars="vertical"
+        android:text="Please wait"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LeaderName"
-        app:layout_constraintVertical_bias="0.794" />
+        app:layout_constraintTop_toBottomOf="@+id/LeaderName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

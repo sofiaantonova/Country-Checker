@@ -16,7 +16,7 @@ public class InfoActivity extends AppCompatActivity {
     public void leaderStart(View view){
 
         //setupPermissions()
-        Intent leadActivity = new Intent(this, LeaderActivity.class);
+        Intent leadActivity = new Intent(this, PersonActivity.class);
         startActivity(leadActivity);
     }
 }

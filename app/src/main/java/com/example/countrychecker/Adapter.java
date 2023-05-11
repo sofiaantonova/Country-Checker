@@ -20,21 +20,53 @@ public class Adapter {
         String aa = a.substring(a.lastIndexOf("leader_name1"));
         aa = aa.substring(0, aa.indexOf('\n'));
         aa = aa.substring(aa.lastIndexOf('[') + 1, aa.indexOf(']'));
-        //System.out.println(aa);
         return aa;
-        //System.out.println(aa);s
-        //System.out.println(a);
     }
-    public static String Photo(String name) {
+
+    public static String Bio(String name) {
         Wiki wiki = new Wiki.Builder().build();
-        String a = wiki.getPageText("United States");
-        String aa = a.substring(a.lastIndexOf("image_flag"));
+        return wiki.getTextExtract(name);
+    }
+
+    public static String Parliament(String name) {
+        Wiki wiki = new Wiki.Builder().build();
+        String a = wiki.getPageText(name);
+        String aa;
+        if (a.contains("lower_house")) {
+            aa = a.substring(a.lastIndexOf("lower_house"));
+            aa = aa.substring(0, aa.indexOf('\n'));
+            try {
+                aa = aa.substring(aa.lastIndexOf('[') + 1, aa.indexOf('|'));
+            } catch(Exception e) {
+                aa =  aa.substring(aa.lastIndexOf('[') + 1, aa.indexOf(']'));
+            }
+
+        } else {
+            aa = a.substring(a.indexOf("legislature"));
+            aa = aa.substring(0, aa.indexOf('\n'));
+            aa = aa.substring(aa.indexOf("[[") + 2, aa.indexOf(']'));
+        }
+        return aa;
+    }
+
+    public static String Prime(String name) throws IOException {
+        Wiki wiki = new Wiki.Builder().build();
+        String a = wiki.getPageText(name);
+        String aa = a.substring(a.lastIndexOf("leader_name2"));
         aa = aa.substring(0, aa.indexOf('\n'));
-        aa = aa.substring(aa.lastIndexOf("= ")+1, aa.length());
+        aa = aa.substring(aa.lastIndexOf('[') + 1, aa.indexOf(']'));
+        return aa;
+    }
+
+    public static String Photo(String name, String type) {
+        Wiki wiki = new Wiki.Builder().build();
+        String a = wiki.getPageText(name);
+        String aa = a.substring(a.indexOf(type));
+        aa = aa.substring(0, aa.indexOf('\n'));
+        //aa = aa.substring(aa.lastIndexOf("= ")+1, aa.length());
         aa = aa.substring(aa.lastIndexOf("= ") + 2);
         String aaa = wiki.getImageInfo("File:" + aa).get(0).url.toString();
+        System.out.println(aaa);
         return aaa;
-        //System.out.println(aa);
-        //System.out.println(a);
     }
 }
