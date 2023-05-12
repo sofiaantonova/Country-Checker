@@ -17,7 +17,7 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     private final LayoutInflater inflater;
     private final List<Country> countries;
-    RecyclerAdapter(Context context, List<Country> countries, Listener listener){
+    public RecyclerAdapter(Context context, List<Country> countries, Listener listener){
         this.countries = countries;
         this.inflater = LayoutInflater.from(context);
         this.listener = listener;
