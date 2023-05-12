@@ -1,4 +1,4 @@
-package com.example.countrychecker;
+package com.example.countrychecker.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.countrychecker.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         //Article article = wikiBot.getArticle("United States");
         //System.out.println(article.getText());
         //setupPermissions()
-        Intent infoActivity = new Intent(this, InfoActivity.class);
-        startActivity(infoActivity);
+        Intent recyclerActivity = new Intent(this, RecyclerActivity.class);
+        startActivity(recyclerActivity);
     }
 }

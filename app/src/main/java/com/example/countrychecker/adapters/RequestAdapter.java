@@ -1,23 +1,15 @@
-package com.example.countrychecker;
+package com.example.countrychecker.adapters;
 
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 import io.github.fastily.jwiki.core.Wiki;
 
-public class Adapter {
-    public static String Pres(String name) throws IOException {
+public class RequestAdapter {
+    public static String Pres(String name, String type) throws IOException {
         Wiki wiki = new Wiki.Builder().build();
         String a = wiki.getPageText(name);
-        String aa = a.substring(a.lastIndexOf("leader_name1"));
+        String aa = a.substring(a.lastIndexOf(type));
         aa = aa.substring(0, aa.indexOf('\n'));
         aa = aa.substring(aa.lastIndexOf('[') + 1, aa.indexOf(']'));
         return aa;
@@ -49,24 +41,21 @@ public class Adapter {
         return aa;
     }
 
-    public static String Prime(String name) throws IOException {
-        Wiki wiki = new Wiki.Builder().build();
-        String a = wiki.getPageText(name);
-        String aa = a.substring(a.lastIndexOf("leader_name2"));
-        aa = aa.substring(0, aa.indexOf('\n'));
-        aa = aa.substring(aa.lastIndexOf('[') + 1, aa.indexOf(']'));
-        return aa;
-    }
-
     public static String Photo(String name, String type) {
         Wiki wiki = new Wiki.Builder().build();
         String a = wiki.getPageText(name);
         String aa = a.substring(a.indexOf(type));
         aa = aa.substring(0, aa.indexOf('\n'));
+        if (aa.contains("<!--")){
+            aa = aa.substring(0, aa.indexOf("<!--"));
+        }
+        if (aa.contains("File:")){
+            aa = aa.substring(aa.indexOf("File:")+4, aa.indexOf("|"));
+        }
         //aa = aa.substring(aa.lastIndexOf("= ")+1, aa.length());
         aa = aa.substring(aa.lastIndexOf("= ") + 2);
         String aaa = wiki.getImageInfo("File:" + aa).get(0).url.toString();
-        System.out.println(aaa);
+        //System.out.println(aa);
         return aaa;
     }
 }

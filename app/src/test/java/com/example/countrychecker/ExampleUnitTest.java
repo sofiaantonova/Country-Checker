@@ -1,8 +1,8 @@
 package com.example.countrychecker;
 
-import org.junit.Test;
+import com.example.countrychecker.adapters.RequestAdapter;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 import java.io.IOException;
 
@@ -14,6 +14,6 @@ import java.io.IOException;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws IOException {
-        System.out.println(Adapter.Pres("United States"));
+        System.out.println(RequestAdapter.Pres("United States"));
     }
 }

@@ -1,16 +1,17 @@
-package com.example.countrychecker;
+package com.example.countrychecker.view;
 
 
 import static com.example.countrychecker.R.id.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.drawable.PictureDrawable;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.countrychecker.R;
+import com.example.countrychecker.adapters.RequestAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -28,11 +29,14 @@ public class PersonActivity extends AppCompatActivity {
         TextView leader = findViewById(R.id.LeaderName);
         ImageView ph = findViewById(R.id.leadPhoto);
         TextView bio = findViewById(leaderBio);
+        String country, person;
+        country = getIntent().getStringExtra("Country");
+        person =  getIntent().getStringExtra("Leader");
         new Thread(() -> {
             String pres, biog;
             try {
-                pres = Adapter.Pres("United States");
-                biog = Adapter.Bio(pres);
+                pres = RequestAdapter.Pres(country, person);
+                biog = RequestAdapter.Bio(pres);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -43,7 +47,7 @@ public class PersonActivity extends AppCompatActivity {
             });
             URL url;
             try {
-                url = new URL(Adapter.Photo(pres, "image"));
+                url = new URL(RequestAdapter.Photo(pres, "image"));
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
