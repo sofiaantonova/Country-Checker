@@ -17,10 +17,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void startWorkflow(View view){
-        //MediaWikiBot wikiBot = new MediaWikiBot("https://en.wikipedia.org/w/");
-        //Article article = wikiBot.getArticle("United States");
-        //System.out.println(article.getText());
-        //setupPermissions()
         Intent recyclerActivity = new Intent(this, RecyclerActivity.class);
         startActivity(recyclerActivity);
     }

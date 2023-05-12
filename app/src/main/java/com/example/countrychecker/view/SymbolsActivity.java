@@ -24,9 +24,15 @@ public class SymbolsActivity extends AppCompatActivity {
             String urlc, urlf;
             //ss
             urlf = RequestAdapter.Photo(country, "image_flag");
-            urlc = RequestAdapter.Photo(country, "image_coat");
+            try {
+                urlc = RequestAdapter.Photo(country, "image_coat");
+            }
+            catch (Exception e){
+                urlc = RequestAdapter.Photo(country, "image_seal");
+            }
             flag.post(() -> GlideToVectorYou.init().with(this).load(Uri.parse(urlf), flag));
-            coat.post(() -> GlideToVectorYou.init().with(this).load(Uri.parse(urlc), coat));
+            String finalUrlc = urlc;
+            coat.post(() -> GlideToVectorYou.init().with(this).load(Uri.parse(finalUrlc), coat));
         }).start();
     }
 }

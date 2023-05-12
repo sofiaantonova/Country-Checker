@@ -31,38 +31,19 @@ public class PersonActivity extends AppCompatActivity {
         TextView bio = findViewById(leaderBio);
         String country, person;
         country = getIntent().getStringExtra("Country");
-        person =  getIntent().getStringExtra("Leader");
+        person = getIntent().getStringExtra("Leader");
         new Thread(() -> {
             String pres, biog;
-            try {
-                pres = RequestAdapter.Pres(country, person);
-                biog = RequestAdapter.Bio(pres);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            pres = RequestAdapter.Pres(country, person);
+            biog = RequestAdapter.Bio(pres);
             leader.post(() -> leader.setText(pres));
             bio.post(() -> {
                 bio.setText(biog);
                 bio.setMovementMethod(new ScrollingMovementMethod());
             });
-            URL url;
-            try {
-                url = new URL(RequestAdapter.Photo(pres, "image"));
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
-            }
-            InputStream in;
-            try {
-                in = url.openStream();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            ph.post(() -> Picasso.get().load(url.toString()).into(ph));
-            try {
-                in.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            String url = RequestAdapter.Photo(pres, "image");
+
+            ph.post(() -> Picasso.get().load(url).into(ph));
         }).start();
     }
 }

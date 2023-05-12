@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class ExampleUnitTest {
     @Test
-    public void addition_isCorrect() throws IOException {
-        System.out.println(RequestAdapter.Pres("United States"));
+    public void addition_isCorrect() {
+        System.out.println(RequestAdapter.Pres("United States", "leader_name1"));
     }
 }

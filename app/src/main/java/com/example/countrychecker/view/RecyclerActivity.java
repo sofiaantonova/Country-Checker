@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class RecyclerActivity extends AppCompatActivity {
     ArrayList<Country> countries = new ArrayList<Country>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,14 +33,33 @@ public class RecyclerActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
     }
-    private void setCountries(){
+
+    private void setCountries() {
         countries.add(new Country("Russia"));
         countries.add(new Country("United States"));
+        countries.add(new Country("United Kingdom"));
+        countries.add(new Country("India"));
+        countries.add(new Country("China"));
         countries.add(new Country("Germany"));
         countries.add(new Country("France"));
-        countries.add(new Country("United Kingdom"));
+        countries.add(new Country("Spain"));
+        countries.add(new Country("Japan"));
+        countries.add(new Country("Hungary"));
+        countries.add(new Country("Denmark"));
+        countries.add(new Country("Poland"));
+        countries.add(new Country("Canada"));
+        countries.add(new Country("Austria"));
+        countries.add(new Country("Australia"));
+        countries.add(new Country("Finland"));
+        countries.add(new Country("Israel"));
+        countries.add(new Country("Republic of Ireland"));
+        countries.add(new Country("Mexico"));
+        countries.add(new Country("New Zealand"));
+
+
     }
-    private void temp(Country country){
+
+    private void temp(Country country) {
         Intent infoActivity = new Intent(this, InfoActivity.class);
         infoActivity.putExtra("Country", country.getName());
         startActivity(infoActivity);

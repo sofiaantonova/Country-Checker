@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.countrychecker.R;
 import com.example.countrychecker.adapters.RequestAdapter;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
+import com.squareup.picasso.Picasso;
 
 public class ParliamentActivity extends AppCompatActivity {
 
@@ -30,7 +31,13 @@ public class ParliamentActivity extends AppCompatActivity {
                 text.setText(bio);
                 text.setMovementMethod(new ScrollingMovementMethod());
             });
-            struc.post(() -> GlideToVectorYou.init().with(this).load(Uri.parse(url), struc));
+            struc.post(() -> {
+                if (url.contains("svg")) {
+                    GlideToVectorYou.init().with(this).load(Uri.parse(url), struc);
+                } else {
+                    struc.post(() -> Picasso.get().load(url).into(struc));
+                }
+            });
         }).start();
     }
 }
